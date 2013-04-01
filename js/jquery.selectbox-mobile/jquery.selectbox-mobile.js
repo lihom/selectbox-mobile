@@ -30,7 +30,7 @@
 			};
 			
 			var _privaty = {
-				$body: $('body'),
+				$body: $(document),
 				
 				// $OBJ is select element
 				$OBJ: {},
