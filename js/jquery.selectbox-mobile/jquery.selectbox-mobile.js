@@ -53,9 +53,6 @@
 				Setup: function() {
 					_this.$OBJ = $(this);
 					
-					// add select click outside event
-					_this.$body.bind('mousedown', _this.statusReset);
-					
 					// initialize custom select setting
 					_this.initSelect();
 				},
@@ -87,7 +84,7 @@
 					_this.$OBJ.wrap('<div class="selectbox-mobile-wrap" />');
 					
 					_this.$wrap = _this.$OBJ.parent();
-					_this.$wrap.append('<div class="handle" /><div class="arrow" />');
+					_this.$wrap.prepend('<div class="handle" /><div class="arrow" />');
 					
 					_this.$handle = _this.$wrap.find('.handle');
 					_this.$handle.css(_this.obj_default_css);
@@ -124,13 +121,14 @@
 				// setSelectEvent is contorl custom select ui status
 				setSelectEvent: function() {
 					// add select events
-					_this.$OBJ.bind('change', _this.evtChange);
-					_this.$OBJ.bind('mousedown', _this.evtMouseDown);
 					_this.$OBJ.bind('mouseover', _this.evtMouseOver);
 					_this.$OBJ.bind('mouseout', _this.evtMouseOut);
+					_this.$OBJ.bind('focus', _this.evtMouseDown);
+					_this.$OBJ.bind('blur', _this.statusReset);
+					_this.$OBJ.bind('change', _this.evtChange);
 				},
 				evtChange: function() {
-					_this.statusReset();
+					_this.$OBJ.trigger('blur');
 					$(__this).each(function(i) {
 						__this[i].displayInfo();
 					});
@@ -159,11 +157,11 @@
 				},
 				// destroy is destroy custom select ui
 				destroy: function(_this) {
-					_this.$body.unbind('mousedown', _this.statusReset);
-					_this.$OBJ.unbind('change', _this.evtChange);
-					_this.$OBJ.unbind('mousedown', _this.evtMouseDown);
 					_this.$OBJ.unbind('mouseover', _this.evtMouseOver);
 					_this.$OBJ.unbind('mouseout', _this.evtMouseOut);
+					_this.$OBJ.unbind('blur', _this.statusReset);
+					_this.$OBJ.unbind('focus', _this.evtMouseDown);
+					_this.$OBJ.unbind('change', _this.evtChange);
 					_this.$OBJ.unwrap();
 					_this.$OBJ.removeAttr('style');
 					_this.$handle.remove();

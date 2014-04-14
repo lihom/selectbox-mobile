@@ -57,12 +57,9 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 2;
 }
 
 .selectbox-mobile-wrap .handle {
-	position: relative;
-	z-index: 1;
 	padding: 6px 10px;
 	padding-right: 27px;
 	white-space: nowrap;
@@ -72,7 +69,6 @@
 .selectbox-mobile-wrap .arrow {
 	position: absolute;
 	top: 50%; right: 0;
-	z-index: 1;
 	width: 27px;
 	height: 27px;
 	margin-top: -14px;
