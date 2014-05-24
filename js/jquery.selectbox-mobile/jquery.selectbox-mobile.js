@@ -63,12 +63,6 @@
 				},
 				// initSelect is hidden native OS select menu
 				initSelect: function() {
-					_this.$OBJ.css({
-						'-webkit-appearance': 'none',
-						'min-height': '100%',
-						'max-height': '100%'
-					});
-					
 					_this.obj_default_css = {
 						width: _this.$OBJ.width(),
 						height: _this.$OBJ.height(),
@@ -78,6 +72,12 @@
 						'font-weight': _this.$OBJ.css('font-weight'),
 						'color': _this.$OBJ.css('color')
 					};
+
+					_this.$OBJ.css({
+						'-webkit-appearance': 'none',
+						'min-height': '100%',
+						'max-height': '100%'
+					});
 					
 					_this.obj_default_css = $.extend(_this.obj_default_css, _this.obj_custom_css);
 					
